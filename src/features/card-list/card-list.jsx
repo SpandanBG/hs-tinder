@@ -3,7 +3,9 @@ import { Card } from "../../components/card";
 
 const CardList = ({ cards, onCardSwipped }) =>
   cards.map(({ title }) => (
-    <Card key={title} title={title} killCallback={() => onCardSwipped(title)} />
+    <Card key={title} id={title} killCallback={() => onCardSwipped(title)}>
+      <div>{title}</div>
+    </Card>
   ));
 
 CardList.propTypes = {

@@ -6,9 +6,9 @@ import Hammer from "react-hammerjs";
 const SWIPE_UP_SPEED = 300;
 const SWIPE_HORIZONTAL_SPEED = 250;
 
-const Card = ({ title, killCallback }) => {
+const Card = ({ id, killCallback, children }) => {
   const movedRef = useRef(false);
-  const [cardId] = useState(`card-${title}`);
+  const [cardId] = useState(`card-${id}`);
 
   const onSwipped = useCallback(
     ({ finished }) => {
@@ -49,14 +49,14 @@ const Card = ({ title, killCallback }) => {
       direction="DIRECTION_ALL"
     >
       <div className="card" id={cardId}>
-        {title}
+        {children}
       </div>
     </Hammer>
   );
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   killCallback: PropTypes.func.isRequired,
 };
 
