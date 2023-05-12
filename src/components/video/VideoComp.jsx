@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
-import TestVid from "../../vid/test-vid.mp4";
-
 import React, {useEffect, useRef, useState} from'react'
 import TestVid from '../../vid/test-vid.mp4'
 import './VideoComp.css'
@@ -8,6 +5,9 @@ import './VideoComp.css'
 const VideoCard = () =>{
     const [isVideoPlaying, setVideoPlaying] = useState(true)
     const [isVideoMuted, setVideoMuted] = useState(true)
+
+    const videoRef = useRef(null)
+    const muteButton = useRef(null)
 
   const onVideoPress = () => {
     if (isVideoPlaying) {
@@ -51,4 +51,6 @@ const VideoCard = () =>{
         </div>
     )
 }
+
+export { VideoCard };
 
