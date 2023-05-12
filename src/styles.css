@@ -1,12 +1,14 @@
+html, body{
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 .card {
   border: 1px solid black;
-  box-shadow: 3px 3px;
   position: absolute;
-  height: 96%;
-  width: 94%;
+  height: 100%;
+  width: 100%;
   background: white;
 }
 
-body{
-  margin: 0;
-}
