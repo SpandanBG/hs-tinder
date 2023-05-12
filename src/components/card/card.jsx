@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import anime from "animejs";
 import Hammer from "react-hammerjs";
 
+const SWIPE_UP_SPEED = 300;
+const SWIPE_HORIZONTAL_SPEED = 250;
+
 const Card = ({ title, killCallback }) => {
   const movedRef = useRef(false);
   const [cardId] = useState(`card-${title}`);
@@ -16,21 +19,23 @@ const Card = ({ title, killCallback }) => {
     [movedRef]
   );
 
-  const onXSwipeHandler = useCallback(({ deltaX, deltaTime }) => {
+  const onXSwipeHandler = useCallback(({ deltaX }) => {
+    if (movedRef.current) return;
     anime({
       targets: `#${cardId}`,
       translateX: (deltaX < 0 ? -1 : 1) * window.screen.width,
-      duration: deltaTime * 6,
+      duration: SWIPE_HORIZONTAL_SPEED,
       easing: "easeInOutQuad",
       update: killOnSwipped,
     });
   }, []);
 
-  const onUpSwipeHandler = useCallback(({ deltaTime }) => {
+  const onUpSwipeHandler = useCallback(() => {
+    if (movedRef.current) return;
     anime({
       targets: `#${cardId}`,
       translateY: -1 * window.screen.height,
-      duration: deltaTime * 6,
+      duration: SWIPE_UP_SPEED,
       easing: "easeInOutQuad",
       update: killOnSwipped,
     });

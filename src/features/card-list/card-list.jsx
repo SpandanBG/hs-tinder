@@ -8,7 +8,7 @@ const CardList = ({ cards, onCardSwipped }) =>
 
 CardList.propTypes = {
   cards: PropTypes.arrayOf(
-    PropTypes.objectOf({
+    PropTypes.shape({
       title: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
