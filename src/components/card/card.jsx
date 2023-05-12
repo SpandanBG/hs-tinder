@@ -1,24 +1,39 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import anime from "animejs";
 import Hammer from "react-hammerjs";
 
-const Card = ({ title }) => {
-  const onSwipeHandler = useCallback((event) => {
-    anime({
-      targets: "#card",
-      translateX:
-        event.deltaX < 0 ? -1 * window.screen.width : window.screen.width,
-      duration: event.deltaTime * 6,
-      easing: "easeInOutQuad",
-    });
+const Card = ({ title, zIndex, killCallback }) => {
+  const [cardId] = useState(`card-${zIndex}`);
 
-    console.log(event);
+  const onXSwipeHandler = useCallback(({ deltaX, deltaTime }) => {
+    anime({
+      targets: `#${cardId}`,
+      translateX: (deltaX < 0 ? -1 : 1) * window.screen.width,
+      duration: deltaTime * 6,
+      easing: "easeInOutQuad",
+      update: ({ finished }) => finished.then(killCallback),
+    });
+  }, []);
+
+  const onUpSwipeHandler = useCallback(({ deltaTime }) => {
+    anime({
+      targets: `#${cardId}`,
+      translateY: -1 * window.screen.height,
+      duration: deltaTime * 6,
+      easing: "easeInOutQuad",
+      update: ({ finished }) => finished.then(killCallback),
+    });
   }, []);
 
   return (
-    <Hammer onSwipe={onSwipeHandler}>
-      <div className="card" id="card">
+    <Hammer
+      onSwipeLeft={onXSwipeHandler}
+      onSwipeRight={onXSwipeHandler}
+      onSwipeUp={onUpSwipeHandler}
+      direction="DIRECTION_ALL"
+    >
+      <div className="card" id={cardId} style={{ "z-index": -1 * zIndex }}>
         {title}
       </div>
     </Hammer>
@@ -27,6 +42,8 @@ const Card = ({ title }) => {
 
 Card.propTypes = {
   title: PropTypes.string,
+  zIndex: PropTypes.number,
+  killCallback: PropTypes.func,
 };
 
 export { Card };

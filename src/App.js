@@ -1,6 +1,14 @@
-import { Card } from "./components/card";
+import { CardList } from "./features/card-list";
 import "./styles.css";
 
+const cardTitles = [
+  { title: "hello" },
+  { title: "world." },
+  { title: "how" },
+  { title: "are" },
+  { title: "you?" },
+];
+
 export default function App() {
-  return <Card title="hello" />;
+  return <CardList cards={cardTitles} />;
 }
