@@ -9,8 +9,8 @@ const SWIPE_HORIZONTAL_SPEED = 250;
 const Card = ({
   id,
   killCallback,
-  leftSwipeCallbackHook,
-  rightSwipeCallbackHook,
+  leftSwipeBtnRef,
+  rightSwipeBtnRef,
   isTop,
   children,
 }) => {
@@ -50,15 +50,10 @@ const Card = ({
 
   useEffect(() => {
     if (!isTop) return;
+    if (!leftSwipeBtnRef.current || !rightSwipeBtnRef.current) return;
 
-    if (!leftSwipeCallbackHook.current || !rightSwipeCallbackHook.current)
-      return;
-
-    leftSwipeCallbackHook.current.onclick = () =>
-      onXSwipeHandler({ deltaX: -1 });
-
-    rightSwipeCallbackHook.current.onclick = () =>
-      onXSwipeHandler({ deltaX: 1 });
+    leftSwipeBtnRef.current.onclick = () => onXSwipeHandler({ deltaX: -1 });
+    rightSwipeBtnRef.current.onclick = () => onXSwipeHandler({ deltaX: 1 });
   }, [isTop]);
 
   return (
@@ -78,8 +73,8 @@ const Card = ({
 Card.propTypes = {
   id: PropTypes.string.isRequired,
   killCallback: PropTypes.func.isRequired,
-  leftSwipeCallbackHook: PropTypes.object.isRequired,
-  rightSwipeCallbackHook: PropTypes.object.isRequired,
+  leftSwipeBtnRef: PropTypes.object.isRequired,
+  rightSwipeBtnRef: PropTypes.object.isRequired,
   isTop: PropTypes.bool,
 };
 

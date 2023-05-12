@@ -19,8 +19,8 @@ const CardList = ({ cards, onCardSwipped }) => {
           key={title}
           id={title}
           killCallback={() => onCardSwipped(title)}
-          leftSwipeCallbackHook={dislikeBtnRef}
-          rightSwipeCallbackHook={likeBtnRef}
+          leftSwipeBtnRef={dislikeBtnRef}
+          rightSwipeBtnRef={likeBtnRef}
           isTop={isTop(i, cards.length)}
         >
           <div>{title}</div>
