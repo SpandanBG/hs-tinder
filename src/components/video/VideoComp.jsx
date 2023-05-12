@@ -52,9 +52,9 @@ const VideoCard = memo((props) =>{
             <button ref={muteButton} onClick={toggleMute} className='button-mute'>
                 {
                     isVideoMuted?
-                    <i class="fa fa-volume-off"></i>
+                    <i className="fa fa-volume-off"></i>
                     :
-                    <i class="fa fa-volume-up" aria-hidden="true"></i>
+                    <i className="fa fa-volume-up" aria-hidden="true"></i>
 
                 }
             </button>

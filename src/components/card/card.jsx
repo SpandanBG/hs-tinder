@@ -1,13 +1,19 @@
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import anime from "animejs";
 import Hammer from "react-hammerjs";
-import { SemiCircleBtn, BtnTypes } from "../semi-circle-btn";
 
 const SWIPE_UP_SPEED = 300;
 const SWIPE_HORIZONTAL_SPEED = 250;
 
-const Card = ({ id, killCallback, children }) => {
+const Card = ({
+  id,
+  killCallback,
+  leftSwipeCallbackHook,
+  rightSwipeCallbackHook,
+  isTop,
+  children,
+}) => {
   const movedRef = useRef(false);
   const [cardId] = useState(`card-${id}`);
 
@@ -42,6 +48,19 @@ const Card = ({ id, killCallback, children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (!isTop) return;
+
+    if (!leftSwipeCallbackHook.current || !rightSwipeCallbackHook.current)
+      return;
+
+    leftSwipeCallbackHook.current.onclick = () =>
+      onXSwipeHandler({ deltaX: -1 });
+
+    rightSwipeCallbackHook.current.onclick = () =>
+      onXSwipeHandler({ deltaX: 1 });
+  }, [isTop]);
+
   return (
     <Hammer
       onSwipeLeft={onXSwipeHandler}
@@ -50,14 +69,6 @@ const Card = ({ id, killCallback, children }) => {
       direction="DIRECTION_ALL"
     >
       <div className="card" id={cardId}>
-        <SemiCircleBtn
-          type={BtnTypes.CROSS}
-          onClick={() => onXSwipeHandler({ deltaX: -1 })}
-        />
-        <SemiCircleBtn
-          type={BtnTypes.HEART}
-          onClick={() => onXSwipeHandler({ deltaX: 1 })}
-        />
         {children}
       </div>
     </Hammer>
@@ -67,6 +78,9 @@ const Card = ({ id, killCallback, children }) => {
 Card.propTypes = {
   id: PropTypes.string.isRequired,
   killCallback: PropTypes.func.isRequired,
+  leftSwipeCallbackHook: PropTypes.object.isRequired,
+  rightSwipeCallbackHook: PropTypes.object.isRequired,
+  isTop: PropTypes.bool,
 };
 
 export { Card };

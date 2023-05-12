@@ -12,15 +12,15 @@ const BtnIcon = ({ type }) => {
   return <></>;
 };
 
-const SemiCircleBtn = ({ type, onClick }) => {
+const SemiCircleBtn = ({ type, btnRef }) => {
   return (
     <button
+      ref={btnRef}
       className={cx("clean-btn", "react-btn-common", {
         "dislike-btn": type === BtnTypes.CROSS,
         "like-btn": type === BtnTypes.HEART,
       })}
       type="button"
-      onClick={onClick}
     >
       <BtnIcon type={type} />
     </button>
@@ -29,7 +29,7 @@ const SemiCircleBtn = ({ type, onClick }) => {
 
 SemiCircleBtn.propTypes = {
   type: PropTypes.oneOf([BtnTypes.HEART, BtnTypes.CROSS]).isRequired,
-  onClick: PropTypes.func.isRequired,
+  btnRef: PropTypes.object.isRequired,
 };
 
 export { SemiCircleBtn, BtnTypes };
