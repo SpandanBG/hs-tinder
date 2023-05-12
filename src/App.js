@@ -27,7 +27,5 @@ export default function App() {
     });
   }, []);
 
-  console.log(contents);
-
   return <CardList cards={contents} onCardSwipped={onContentSwipped} />;
 }
