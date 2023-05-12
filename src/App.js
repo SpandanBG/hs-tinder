@@ -1,10 +1,14 @@
 import { useState, useCallback, useEffect } from "react";
 import { CardList } from "./features/card-list";
-import { getInitialContent, getNextContent } from "./api/content";
+import { ping, getInitialContent, getNextContent } from "./api/content";
 import "./styles.css";
 
 export default function App() {
   const [contents, setContents] = useState([]);
+
+  useEffect(() => {
+    ping()
+  }, []);
 
   // Call content API to fill initial contents
   useEffect(() => {
