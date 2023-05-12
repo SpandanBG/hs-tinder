@@ -1,10 +1,38 @@
-html, body{
+html,
+body {
   margin: 0;
   height: 100%;
   overflow: hidden;
 }
 
 .clean-btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.react-btn-common {
+  position: absolute;
+  margin-top: 74.7%;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+}
+
+.dislike-btn {
+  left: 0;
+  transform: translate(-50px, 0px);
+  background: rgba(255, 69, 56, 0.52);
+}
+
+.like-btn {
+  right: 0;
+  transform: translate(50px, 0px);
+  background: rgba(9, 90, 229, 0.54);
 }
 
 .card {
@@ -14,4 +42,3 @@ html, body{
   width: 100%;
   background: white;
 }
-

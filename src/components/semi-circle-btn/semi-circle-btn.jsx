@@ -7,7 +7,7 @@ const BtnTypes = {
 };
 
 const BtnIcon = ({ type }) => {
-  if (type === BtnTypes.CROSS) return <i className="fa fa-solid fa-xmark"></i>;
+  if (type === BtnTypes.CROSS) return <i className="fa fa-solid fa-times"></i>;
   if (type === BtnTypes.HEART) return <i className="fa fa-solid fa-heart"></i>;
   return <></>;
 };
@@ -15,13 +15,10 @@ const BtnIcon = ({ type }) => {
 const SemiCircleBtn = ({ type, onClick }) => {
   return (
     <button
-      className={cx(
-        {
-          "dislike-btn": type === BtnTypes.CROSS,
-          "like-btn": type === BtnTypes.HEART,
-        },
-        "clean-btn"
-      )}
+      className={cx("clean-btn", "react-btn-common", {
+        "dislike-btn": type === BtnTypes.CROSS,
+        "like-btn": type === BtnTypes.HEART,
+      })}
       type="button"
       onClick={onClick}
     >
