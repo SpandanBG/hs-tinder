@@ -33,7 +33,7 @@ const Card = ({ title, zIndex, killCallback }) => {
       onSwipeUp={onUpSwipeHandler}
       direction="DIRECTION_ALL"
     >
-      <div className="card" id={cardId} style={{ "z-index": -1 * zIndex }}>
+      <div className="card" id={cardId} style={{ zIndex: zIndex }}>
         {title}
       </div>
     </Hammer>
