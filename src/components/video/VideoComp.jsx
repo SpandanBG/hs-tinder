@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
-import TestVid from "../../vid/test-vid.mp4";
-
 import React, {useEffect, useRef, useState} from'react'
 import TestVid from '../../vid/test-vid.mp4'
 import './VideoComp.css'
