@@ -43,3 +43,41 @@ body {
   width: 100%;
   background: white;
 }
+
+.btn-pr {
+  background: #202228;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  outline: none;
+  border: none;
+  color: #E1E6F0;
+  padding: 12px;
+  margin: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.botton-tray {
+  display: flex;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  width: 100%;
+}
+
+.icon-play{
+  margin-right: 8px;
+}
+
+.btn-watch-list {
+  margin-left: 0;
+  min-width: 44px;
+}
+
+.btn-watch-now {
+  width: 100%;
+}

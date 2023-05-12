@@ -31,5 +31,5 @@ export default function App() {
     });
   }, []);
 
-  return <CardList cards={contents} onCardSwipped={onContentSwipped} />;
+  return<CardList cards={contents} onCardSwipped={onContentSwipped} />;
 }

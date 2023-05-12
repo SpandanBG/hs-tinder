@@ -3,13 +3,11 @@ import TestVid from '../../vid/test-vid.mp4'
 import './VideoComp.css'
 
 const VideoCard = memo((props) =>{
-    const {autoplay, title} = props
+    const {autoplay, title, muteButtonRef, setVideoMute} = props
 
     const [isVideoPlaying, setVideoPlaying] = useState(autoplay)
-    const [isVideoMuted, setVideoMuted] = useState(autoplay)
 
     const videoRef = useRef(null)
-    const muteButton = useRef(null)
 
   const onVideoPress = () => {
     if (isVideoPlaying) {
@@ -24,7 +22,7 @@ const VideoCard = memo((props) =>{
     const toggleMute = () => {
         const muteVal = !videoRef.current.muted;
         videoRef.current.muted = muteVal
-        setVideoMuted(muteVal)
+        setVideoMute(muteVal)
     }
 
 
@@ -32,6 +30,7 @@ const VideoCard = memo((props) =>{
         if(autoplay)
         {
             videoRef.current.play()
+            muteButtonRef.current.onclick = toggleMute
         }
     }, [autoplay]);
 
@@ -49,15 +48,6 @@ const VideoCard = memo((props) =>{
                 className='video-ele'
                 key={title}
             />
-            <button ref={muteButton} onClick={toggleMute} className='button-mute'>
-                {
-                    isVideoMuted?
-                    <i className="fa fa-volume-off"></i>
-                    :
-                    <i className="fa fa-volume-up" aria-hidden="true"></i>
-
-                }
-            </button>
         </div>
     )
 })
