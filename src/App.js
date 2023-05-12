@@ -1,4 +1,5 @@
 import { CardList } from "./features/card-list";
+import {VideoCard} from "./components/video"
 import "./styles.css";
 
 const cardTitles = [
@@ -10,5 +11,8 @@ const cardTitles = [
 ];
 
 export default function App() {
-  return <CardList cards={cardTitles} />;
+  return <div>
+    <VideoCard/>
+    <CardList cards={cardTitles} />;
+  </div> 
 }
