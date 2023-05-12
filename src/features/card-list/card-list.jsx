@@ -9,8 +9,8 @@ const isTop = (cardIndex, cardsLength) => {
 };
 
 const CardList = ({ cards, onCardSwipped }) => {
-  const likeBtnRef = useRef(() => {});
-  const dislikeBtnRef = useRef(() => {});
+  const likeBtnRef = useRef(null);
+  const dislikeBtnRef = useRef(null);
 
   return (
     <>
