@@ -6,6 +6,9 @@ const VideoCard = () =>{
     const [isVideoPlaying, setVideoPlaying] = useState(true)
     const [isVideoMuted, setVideoMuted] = useState(true)
 
+    const videoRef = useRef(null)
+    const muteButton = useRef(null)
+
   const onVideoPress = () => {
     if (isVideoPlaying) {
       videoRef.current.pause();
@@ -48,4 +51,6 @@ const VideoCard = () =>{
         </div>
     )
 }
+
+export { VideoCard };
 
