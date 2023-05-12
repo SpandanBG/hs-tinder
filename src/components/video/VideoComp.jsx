@@ -1,10 +1,12 @@
-import React, {useEffect, useRef, useState} from'react'
+import React, {useEffect, useRef, useState, memo} from'react'
 import TestVid from '../../vid/test-vid.mp4'
 import './VideoComp.css'
 
-const VideoCard = () =>{
-    const [isVideoPlaying, setVideoPlaying] = useState(true)
-    const [isVideoMuted, setVideoMuted] = useState(true)
+const VideoCard = memo((props) =>{
+    const {autoplay, title} = props
+
+    const [isVideoPlaying, setVideoPlaying] = useState(autoplay)
+    const [isVideoMuted, setVideoMuted] = useState(autoplay)
 
     const videoRef = useRef(null)
     const muteButton = useRef(null)
@@ -25,7 +27,14 @@ const VideoCard = () =>{
         setVideoMuted(muteVal)
     }
 
-  useEffect(() => {}, []);
+
+    useEffect(() => {
+        if(autoplay)
+        {
+            videoRef.current.play()
+        }
+    }, [autoplay]);
+
 
     return(
         <div className="video-card">
@@ -35,9 +44,10 @@ const VideoCard = () =>{
                 src={TestVid}
                 loop
                 alt=""
-                autoPlay
-                muted
+                autoPlay={autoplay}
+                muted={autoplay}
                 className='video-ele'
+                key={title}
             />
             <button ref={muteButton} onClick={toggleMute} className='button-mute'>
                 {
@@ -50,7 +60,7 @@ const VideoCard = () =>{
             </button>
         </div>
     )
-}
+})
 
 export { VideoCard };
 
