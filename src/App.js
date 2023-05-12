@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { CardList } from "./features/card-list";
 import { getInitialContent, getNextContent } from "./api/content";
+import {VideoCard} from "./components/video"
 import "./styles.css";
 
 export default function App() {
@@ -27,5 +28,8 @@ export default function App() {
     });
   }, []);
 
-  return <CardList cards={contents} onCardSwipped={onContentSwipped} />;
+  return <div>
+    <VideoCard/>
+    <CardList cards={contents} onCardSwipped={onContentSwipped} />;
+    </div>
 }
