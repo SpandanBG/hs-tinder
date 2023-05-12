@@ -5,6 +5,12 @@ body {
   overflow: hidden;
 }
 
+button{
+  background: none;
+  outline: none;
+  border: none;
+}
+
 .clean-btn {
   background: none;
   color: inherit;
@@ -18,22 +24,18 @@ body {
 .react-btn-common {
   z-index: 2;
   position: absolute;
-  margin-top: 74.7%;
   height: 100px;
   width: 100px;
   border-radius: 100px;
+  top: calc(100vh - 72px - 100px);
 }
 
 .dislike-btn {
-  left: 0;
-  transform: translate(-50px, 0px);
-  background: rgba(255, 69, 56, 0.52);
+  left: -24px;
 }
 
 .like-btn {
-  right: 0;
-  transform: translate(50px, 0px);
-  background: rgba(9, 90, 229, 0.54);
+  right: -26px;
 }
 
 .card {
@@ -80,4 +82,24 @@ body {
 
 .btn-watch-now {
   width: 100%;
+}
+
+.btn-back{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.show-title{
+  position: absolute;
+  z-index: 10;
+  margin: 0 100px;
+  height: 100px;
+  top: calc(100vh - 72px - 70px);
+}
+
+.show-title > img {
+  max-height: 100%;
+  max-width: 100%;
 }

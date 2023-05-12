@@ -1,9 +1,8 @@
 import React, {useEffect, useRef, useState, memo} from'react'
-import TestVid from '../../vid/test-vid.mp4'
 import './VideoComp.css'
 
 const VideoCard = memo((props) =>{
-    const {autoplay, title, muteButtonRef, setVideoMute} = props
+    const {autoplay, title, muteButtonRef, setVideoMute, vidSrc} = props
 
     const [isVideoPlaying, setVideoPlaying] = useState(autoplay)
 
@@ -40,7 +39,7 @@ const VideoCard = memo((props) =>{
             <video
                 ref={videoRef}
                 onClick={onVideoPress}
-                src={TestVid}
+                src={vidSrc}
                 loop
                 alt=""
                 autoPlay={autoplay}

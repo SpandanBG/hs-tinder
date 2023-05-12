@@ -1,5 +1,8 @@
 import cx from "classnames";
 import PropTypes from "prop-types";
+import Like from '../../vid/Like.svg';
+import Dislike from '../../vid/Dislike.svg';
+
 
 const BtnTypes = {
   HEART: "heart",
@@ -7,8 +10,8 @@ const BtnTypes = {
 };
 
 const BtnIcon = ({ type }) => {
-  if (type === BtnTypes.CROSS) return <i className="fa fa-solid fa-times"></i>;
-  if (type === BtnTypes.HEART) return <i className="fa fa-solid fa-heart"></i>;
+  if (type === BtnTypes.CROSS) return <img src={Dislike} />
+  if (type === BtnTypes.HEART) return <img src={Like} />
   return <></>;
 };
 
