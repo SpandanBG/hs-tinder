@@ -10,7 +10,7 @@ const Card = ({ title, killCallback }) => {
   const movedRef = useRef(false);
   const [cardId] = useState(`card-${title}`);
 
-  const killOnSwipped = useCallback(
+  const onSwipped = useCallback(
     ({ finished }) => {
       if (movedRef.current) return;
       finished.then(killCallback);
@@ -26,7 +26,7 @@ const Card = ({ title, killCallback }) => {
       translateX: (deltaX < 0 ? -1 : 1) * window.screen.width,
       duration: SWIPE_HORIZONTAL_SPEED,
       easing: "easeInOutQuad",
-      update: killOnSwipped,
+      update: onSwipped,
     });
   }, []);
 
@@ -37,7 +37,7 @@ const Card = ({ title, killCallback }) => {
       translateY: -1 * window.screen.height,
       duration: SWIPE_UP_SPEED,
       easing: "easeInOutQuad",
-      update: killOnSwipped,
+      update: onSwipped,
     });
   }, []);
 
