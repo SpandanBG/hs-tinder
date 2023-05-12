@@ -14,7 +14,6 @@ const CardList = ({ cards, onCardSwipped }) => {
 
   return (
     <>
-      <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />
       {cards.map(({ title }, i) => (
         <Card
           key={title}
@@ -28,6 +27,7 @@ const CardList = ({ cards, onCardSwipped }) => {
           <VideoCard autoplay={isTop(i, cards.length)} title={title} />
         </Card>
       ))}
+      <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />
       <SemiCircleBtn type={BtnTypes.HEART} btnRef={likeBtnRef} />
     </>
   );
