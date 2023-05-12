@@ -2,6 +2,7 @@ import { useCallback, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import anime from "animejs";
 import Hammer from "react-hammerjs";
+import { SemiCircleBtn, BtnTypes } from "../semi-circle-btn";
 
 const SWIPE_UP_SPEED = 300;
 const SWIPE_HORIZONTAL_SPEED = 250;
@@ -49,6 +50,14 @@ const Card = ({ id, killCallback, children }) => {
       direction="DIRECTION_ALL"
     >
       <div className="card" id={cardId}>
+        <SemiCircleBtn
+          type={BtnTypes.CROSS}
+          onClick={() => onXSwipeHandler({ deltaX: -1 })}
+        />
+        <SemiCircleBtn
+          type={BtnTypes.HEART}
+          onClick={() => onXSwipeHandler({ deltaX: 1 })}
+        />
         {children}
       </div>
     </Hammer>
