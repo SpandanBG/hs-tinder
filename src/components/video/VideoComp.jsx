@@ -46,6 +46,7 @@ const VideoCard = memo((props) =>{
                 muted={autoplay}
                 className='video-ele'
                 key={title}
+                preload='auto'
             />
         </div>
     )
