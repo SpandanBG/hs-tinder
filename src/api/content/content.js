@@ -1,7 +1,9 @@
 import axios from "axios";
-import TestVid from '../../vid/test-vid.mp4'
-import TestVid2 from '../../vid/test-vid2.mp4'
-import TestVid3 from '../../vid/test-vid3.mp4'
+
+
+const TestVid = 'https://secure-media.hotstar.com/static/asmm/vid/test-vid.mp4'
+const TestVid2 = 'https://secure-media.hotstar.com/static/asmm/vid/test-vid2.mp4'
+const TestVid3 = 'https://secure-media.hotstar.com/static/asmm/vid/test-vid3.mp4'
 
 const wanda = 'https://img1.hotstarext.com/image/upload/f_auto,h_136/sources/r1/cms/prod/2844/1382844-t-c40828be0daf';
 const guardians = 'https://img1.hotstarext.com/image/upload/f_auto,h_136/sources/r1/cms/prod/2844/1382844-t-c40828be0daf';
@@ -23,7 +25,7 @@ async function ping() {
 async function getInitialContent() {
   return new Promise((resolve) =>
     resolve([
-      { title: "5-5" , contentImg: specials, src:TestVid},
+      { title: "5-5", contentImg: specials, src:TestVid},
       { title: "4-4", contentImg: wanda, src:TestVid2 },
       { title: "3-3", contentImg: guardians, src:TestVid3},
       { title: "2-2", contentImg: wanda, src:TestVid },
@@ -36,7 +38,7 @@ async function getNextContent() {
   return new Promise((resolve) => {
     const firstNumebr = parseInt((Math.random() * 100) % 100);
     const secondNumber = parseInt((Math.random() * 100) % 100);
-    resolve({ title: `${firstNumebr}-${secondNumber}` });
+    resolve({ title: `${firstNumebr}-${secondNumber}`, contentImg: specials, src:TestVid });
   });
 }
 
