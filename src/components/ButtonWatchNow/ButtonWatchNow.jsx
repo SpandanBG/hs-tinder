@@ -1,10 +1,11 @@
 import React from 'react'
+import cx from 'classnames'
 
-const ButtonWatchNow = () => {
+const ButtonWatchNow = ({className='', text, icon = ''}) => {
     return (
-        <button className='btn-watch-now btn-pr'>
-            <i className="fa fa-play icon-play" aria-hidden="true"></i>
-            <span>Watch Now</span>
+        <button className={cx('btn-watch-now btn-pr', className)}>
+            <i className={icon} aria-hidden="true"></i>
+            <span>{text}</span>
         </button>
     )
 }

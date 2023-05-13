@@ -32,7 +32,7 @@ async function getInitialContent() {
     resolve([
       { title: "5-5", contentImg: specials, src:TestVid , type: ContentType.AD},
       { title: "4-4", contentImg: wanda, src:TestVid2,  type: ContentType.CLIP },
-      { title: "3-3", contentImg: guardians, src:TestVid,  type: ContentType.CLIP},
+      { title: "3-3", contentImg: guardians, src:TestVid3,  type: ContentType.CLIP},
       { title: "2-2", contentImg: wanda, src:TestVid,  type: ContentType.CLIP },
       { title: "1-1", contentImg: specials, src:TestVid2,  type: ContentType.CLIP },
     ])

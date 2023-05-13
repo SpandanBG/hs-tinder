@@ -22,11 +22,18 @@ const CardList = ({ cards, onCardSwipped }) => {
 
   const [isVideoMuted, setVideoMute] = useState(true)
 
+  const isClip = tileTypeRef.current === ContentType.CLIP
+  const primaryCtaProps = {
+    className: isClip ? '' :'btn-ads',
+    text: isClip? 'Watch Now': 'Visit Site',
+    icon: isClip? 'fa fa-play icon-play': ''
+  }
+
   return (
     <>
       <BtnArrow />
       <ButtonMute muteButtonRef={muteButtonRef} isVideoMuted={isVideoMuted} />
-      {tileTypeRef.current === ContentType.CLIP && <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />}
+      {isClip && <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />}
       {cards.map(({ title, src, contentImg, type }, i) => {
         tileTypeRef.current = type
         return (
@@ -43,11 +50,11 @@ const CardList = ({ cards, onCardSwipped }) => {
           </Card>
         )
       })}
-      {tileTypeRef.current === ContentType.CLIP && <SemiCircleBtn type={BtnTypes.HEART} btnRef={likeBtnRef} />}
-      {tileTypeRef.current === ContentType.CLIP && <div className="botton-tray">
-        <ButtonWatchNow />
-        <ButtonWatchlist />
-      </div>}
+      {isClip && <SemiCircleBtn type={BtnTypes.HEART} btnRef={likeBtnRef} />}
+       <div className="botton-tray">
+        <ButtonWatchNow  {...primaryCtaProps}/>
+       {isClip && <ButtonWatchlist />}
+      </div>
     </>
   );
 };
