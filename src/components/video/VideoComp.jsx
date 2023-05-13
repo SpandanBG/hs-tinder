@@ -26,9 +26,18 @@ const VideoCard = memo((props) =>{
 
 
     useEffect(() => {
-        if(autoplay)
+        if(autoplay && videoRef)
         {
-            videoRef.current.play()
+            const playPromise = videoRef.current.play()
+            const videoSrc = videoRef.current.src
+            if (playPromise !== undefined) {
+              playPromise.then(_ => {
+                console.log('video started playing', videoSrc)
+              })
+              .catch(_e => {
+                console.log('video play failed', videoSrc)
+              });
+            }
             muteButtonRef.current.onclick = toggleMute
         }
     }, [autoplay]);
@@ -47,6 +56,7 @@ const VideoCard = memo((props) =>{
                 className='video-ele'
                 key={title}
                 preload='auto'
+                playsInline
             />
         </div>
     )

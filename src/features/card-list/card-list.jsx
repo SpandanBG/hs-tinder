@@ -51,7 +51,7 @@ const CardList = ({ cards, onCardSwipped }) => {
         )
       })}
       {isClip && <SemiCircleBtn type={BtnTypes.HEART} btnRef={likeBtnRef} />}
-       <div className="botton-tray">
+       <div className="button-tray">
         <ButtonWatchNow  {...primaryCtaProps}/>
        {isClip && <ButtonWatchlist />}
       </div>

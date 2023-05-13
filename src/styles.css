@@ -26,17 +26,20 @@ button{
   z-index: 2;
   position: absolute;
   height: 100px;
-  width: 100px;
   border-radius: 100px;
-  top: calc(100vh - 72px - 100px);
+  bottom: 92px;
+}
+
+.react-btn-common > img {
+  height: 100%;
 }
 
 .dislike-btn {
-  left: -24px;
+  left: 0;
 }
 
 .like-btn {
-  right: -26px;
+  right: 0;
 }
 
 .card {
@@ -63,11 +66,11 @@ button{
   text-align: center;
 }
 
-.botton-tray {
+.button-tray {
   display: flex;
   position: absolute;
   z-index: 10;
-  bottom: 0;
+  bottom: 20px;
   width: 100%;
 }
 
@@ -96,7 +99,7 @@ button{
   z-index: 10;
   margin: 0 100px;
   height: 100px;
-  top: calc(100vh - 72px - 70px);
+  bottom: 72px;
 }
 
 .show-title > img {
