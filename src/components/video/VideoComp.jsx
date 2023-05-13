@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState, memo} from'react'
 import './VideoComp.css'
 
 const VideoCard = memo((props) =>{
-    const {autoplay, title, muteButtonRef, setVideoMute, vidSrc} = props
+    const {autoplay, title, muteButtonRef, setVideoMute, vidSrc, isFirstLoad, isVideoMuted} = props
 
     const [isVideoPlaying, setVideoPlaying] = useState(autoplay)
 
@@ -33,6 +33,11 @@ const VideoCard = memo((props) =>{
             if (playPromise !== undefined) {
               playPromise.then(_ => {
                 console.log('video started playing', videoSrc)
+                if(!isFirstLoad.current && !isVideoMuted){
+                  toggleMute()
+                }else{
+                  isFirstLoad.current = false
+                }
               })
               .catch(_e => {
                 console.log('video play failed', videoSrc)

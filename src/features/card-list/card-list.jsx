@@ -18,6 +18,7 @@ const CardList = ({ cards, onCardSwipped }) => {
   const likeBtnRef = useRef(() => { });
   const dislikeBtnRef = useRef(() => { });
   const muteButtonRef = useRef(() => { });
+  const isFirstLoad = useRef(true);
   const tileTypeRef = useRef(ContentType.CLIP)
 
   const [isVideoMuted, setVideoMute] = useState(true)
@@ -46,7 +47,7 @@ const CardList = ({ cards, onCardSwipped }) => {
             isTop={isTop(i, cards.length)}
           >
             {isTop(i, cards.length) ? <ShowTitle src={contentImg} /> : ''}
-            <VideoCard autoplay={isTop(i, cards.length)} title={title} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} />
+            <VideoCard autoplay={isTop(i, cards.length)} title={title} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} isFirstLoad={isFirstLoad} isVideoMuted={isVideoMuted}/>
           </Card>
         )
       })}
