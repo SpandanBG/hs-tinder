@@ -8,6 +8,7 @@ import { ButtonWatchNow } from "../../components/ButtonWatchNow"
 import { ButtonWatchlist } from "../../components/ButtonWatchlist"
 import { BtnArrow } from '../../components/BtnArrow'
 import { ShowTitle } from '../../components/ShowTitle'
+import { ContentType } from '../../api/content'
 
 const isTop = (cardIndex, cardsLength) => {
   return cardIndex === cardsLength - 1;
@@ -17,6 +18,7 @@ const CardList = ({ cards, onCardSwipped }) => {
   const likeBtnRef = useRef(() => { });
   const dislikeBtnRef = useRef(() => { });
   const muteButtonRef = useRef(() => { });
+  const tileTypeRef = useRef(ContentType.CLIP)
 
   const [isVideoMuted, setVideoMute] = useState(true)
 
@@ -24,26 +26,28 @@ const CardList = ({ cards, onCardSwipped }) => {
     <>
       <BtnArrow />
       <ButtonMute muteButtonRef={muteButtonRef} isVideoMuted={isVideoMuted} />
-      <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />
-      {cards.map(({ title, src, contentImg }, i) => (
-        <Card
-          key={title}
-          id={title}
-          killCallback={() => onCardSwipped(title)}
-          leftSwipeBtnRef={dislikeBtnRef}
-          rightSwipeBtnRef={likeBtnRef}
-          isTop={isTop(i, cards.length)}
-        >
-          {isTop(i, cards.length) ? <ShowTitle src={contentImg}/>: ''}
-          <VideoCard autoplay={isTop(i, cards.length)} title={title} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} />
-        </Card>
-      ))}
-      <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />
-      <SemiCircleBtn type={BtnTypes.HEART} btnRef={likeBtnRef} />
-      <div className="botton-tray">
-      <ButtonWatchNow />
-      <ButtonWatchlist />
-      </div>
+      {tileTypeRef.current === ContentType.CLIP && <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />}
+      {cards.map(({ title, src, contentImg, type }, i) => {
+        tileTypeRef.current = type
+        return (
+          <Card
+            key={title}
+            id={title}
+            killCallback={() => onCardSwipped(title)}
+            leftSwipeBtnRef={dislikeBtnRef}
+            rightSwipeBtnRef={likeBtnRef}
+            isTop={isTop(i, cards.length)}
+          >
+            {isTop(i, cards.length) ? <ShowTitle src={contentImg} /> : ''}
+            <VideoCard autoplay={isTop(i, cards.length)} title={title} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} />
+          </Card>
+        )
+      })}
+      {tileTypeRef.current === ContentType.CLIP && <SemiCircleBtn type={BtnTypes.HEART} btnRef={likeBtnRef} />}
+      {tileTypeRef.current === ContentType.CLIP && <div className="botton-tray">
+        <ButtonWatchNow />
+        <ButtonWatchlist />
+      </div>}
     </>
   );
 };

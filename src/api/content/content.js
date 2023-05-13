@@ -10,6 +10,11 @@ const guardians = 'https://img1.hotstarext.com/image/upload/f_auto,h_136/sources
 const specials = 'https://img1.hotstarext.com/image/upload/f_auto,h_148/sources/r1/cms/prod/6197/1516197-t-d6940a1ba339'
 
 
+const ContentType = {
+  AD: 'AD',
+  CLIP: 'CLIP'
+}
+
 async function ping() {
   axios
     .get("https://reward-service-pp.pp.hotstar-labs.com/ping?user=Tester", {
@@ -25,11 +30,11 @@ async function ping() {
 async function getInitialContent() {
   return new Promise((resolve) =>
     resolve([
-      { title: "5-5", contentImg: specials, src:TestVid},
-      { title: "4-4", contentImg: wanda, src:TestVid2 },
-      { title: "3-3", contentImg: guardians, src:TestVid3},
-      { title: "2-2", contentImg: wanda, src:TestVid },
-      { title: "1-1", contentImg: specials, src:TestVid2 },
+      { title: "5-5", contentImg: specials, src:TestVid , type: ContentType.AD},
+      { title: "4-4", contentImg: wanda, src:TestVid2,  type: ContentType.CLIP },
+      { title: "3-3", contentImg: guardians, src:TestVid,  type: ContentType.CLIP},
+      { title: "2-2", contentImg: wanda, src:TestVid,  type: ContentType.CLIP },
+      { title: "1-1", contentImg: specials, src:TestVid2,  type: ContentType.CLIP },
     ])
   );
 }
@@ -38,8 +43,8 @@ async function getNextContent() {
   return new Promise((resolve) => {
     const firstNumebr = parseInt((Math.random() * 100) % 100);
     const secondNumber = parseInt((Math.random() * 100) % 100);
-    resolve({ title: `${firstNumebr}-${secondNumber}`, contentImg: specials, src:TestVid });
+    resolve({ title: `${firstNumebr}-${secondNumber}`, contentImg: specials, src:TestVid, type: ContentType.CLIP });
   });
 }
 
-export { ping, getInitialContent, getNextContent };
+export { ping, getInitialContent, getNextContent, ContentType };
