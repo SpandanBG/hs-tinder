@@ -7,7 +7,7 @@ export default function App() {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    // ping()
+    ping()
   }, []);
 
   // Call content API to fill initial contents

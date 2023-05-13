@@ -19,8 +19,9 @@ async function ping() {
   axios
     .get("https://reward-service-pp.pp.hotstar-labs.com/ping?user=Tester", {
       headers: {
-        countryCode: 'IN'
-      }
+        countryCode: 'IN',
+      },
+      data: {}
     })
     .then((response) => {
       console.log(response);
