@@ -110,3 +110,7 @@ button{
 .btn-ads{
   background: rgba(255, 255, 255, 0.4);
 }
+
+.genre-buttons >  button{
+  color: white;
+}
