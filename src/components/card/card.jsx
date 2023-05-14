@@ -2,9 +2,11 @@ import { useCallback, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import anime from "animejs";
 import Hammer from "react-hammerjs";
+import {fireUserAction, USER_ACTIONS} from "../../api/content/content"
 
 const SWIPE_UP_SPEED = 300;
 const SWIPE_HORIZONTAL_SPEED = 250;
+
 
 const Card = ({
   id,
@@ -15,7 +17,20 @@ const Card = ({
   children,
 }) => {
   const movedRef = useRef(false);
+  const timer = useRef(0)
   const [cardId] = useState(`card-${id}`);
+
+  function startTimer() {
+    timer.current = new Date();
+  };
+  
+  function getElapsedTime() {
+    const endTime = new Date();
+    let timeDiff = endTime - timer.current;
+    timeDiff /= 1000;
+    const seconds = Math.round(timeDiff);
+    return seconds
+  }
 
   const onSwipped = useCallback(
     ({ finished }) => {
@@ -28,17 +43,34 @@ const Card = ({
 
   const onXSwipeHandler = useCallback(({ deltaX }) => {
     if (movedRef.current) return;
-    anime({
-      targets: `#${cardId}`,
-      translateX: (deltaX < 0 ? -1 : 1) * window.screen.width,
-      duration: SWIPE_HORIZONTAL_SPEED,
-      easing: "easeInOutQuad",
-      update: onSwipped,
-    });
+
+    if(deltaX === 1){
+      fireUserAction(USER_ACTIONS.LIKE, id)
+    }else{
+      fireUserAction(USER_ACTIONS.DISLIKE, id)
+      /** only swipe on dislike */
+      anime({
+        targets: `#${cardId}`,
+        translateX: (deltaX < 0 ? -1 : 1) * window.screen.width,
+        duration: SWIPE_HORIZONTAL_SPEED,
+        easing: "easeInOutQuad",
+        update: onSwipped,
+      });
+    }
+
   }, []);
 
   const onUpSwipeHandler = useCallback(() => {
     if (movedRef.current) return;
+
+    const elapsedTime = getElapsedTime()
+    console.log('elapsedTime', elapsedTime)
+    if(elapsedTime > 3){
+      fireUserAction(USER_ACTIONS.NORMALSKIP, id)
+    }else{
+      fireUserAction(USER_ACTIONS.QUICKSKIP, id)
+    }
+
     anime({
       targets: `#${cardId}`,
       translateY: -1 * window.screen.height,
@@ -53,13 +85,23 @@ const Card = ({
     if (!leftSwipeBtnRef.current || !rightSwipeBtnRef.current) return;
 
     leftSwipeBtnRef.current.onclick = () => onXSwipeHandler({ deltaX: -1 });
-    rightSwipeBtnRef.current.onclick = () => onXSwipeHandler({ deltaX: 1 });
+    const likedBtnOnlick = rightSwipeBtnRef.current.onclick
+    rightSwipeBtnRef.current.onclick = () => {
+      if(rightSwipeBtnRef.current.onclick){
+        likedBtnOnlick()
+      }
+      onXSwipeHandler({ deltaX: 1 })
+    };
   }, [isTop]);
+
+  useEffect(()=>{
+    startTimer()
+  },[])
 
   return (
     <Hammer
       onSwipeLeft={onXSwipeHandler}
-      onSwipeRight={onXSwipeHandler}
+      onSwipeRight={()=>{}}
       onSwipeUp={onUpSwipeHandler}
       direction="DIRECTION_ALL"
     >

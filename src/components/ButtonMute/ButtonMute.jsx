@@ -1,5 +1,6 @@
 import React from 'react'
 import VolumeUp from '../../vid/volume.svg'
+import VolumeOff from '../../vid/volumeOff.svg'
 
 const ButtonMute = ({ muteButtonRef, isVideoMuted }) => {
     return (
@@ -10,7 +11,7 @@ const ButtonMute = ({ muteButtonRef, isVideoMuted }) => {
                     <img src={VolumeUp} />
                     :
                     // <i class="fa fa-volume-up" aria-hidden="true"></i>
-                    <img src={VolumeUp} />
+                    <img src={VolumeOff} />
 
             }
         </button>

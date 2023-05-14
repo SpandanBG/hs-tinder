@@ -1,38 +1,62 @@
-import React from 'react'
-import { useState, useCallback, useEffect } from "react";
+import React, {memo} from 'react'
+import { useCallback } from "react";
 import { CardList } from "../../features/card-list";
-import { ping, getInitialContent, getNextContent } from "../../api/content";
+import { getNextContent, popClip, getClips } from "../../api/content";
+import { ROUTES } from '../../api/constants'
+import {useNavigate} from 'react-router-dom'
 
 
-const TilesPage = () => {
-    const [contents, setContents] = useState([]);
+function getElapsedTime(time) {
+    const endTime = new Date();
+    let timeDiff = endTime - time;
+    timeDiff /= 1000;
+    const seconds = Math.round(timeDiff);
+    return seconds
+  }
 
-    useEffect(() => {
-        ping()
-    }, []);
+const TilesPage = memo(({contents, setContents}) => {
 
-    // Call content API to fill initial contents
-    useEffect(() => {
-        getInitialContent().then((contents) => setContents(contents));
-    }, []);
+    const navigate = useNavigate()
 
+    let lastPoped;
     const fetchNewContent = useCallback(() => {
-        getNextContent().then((nextContent) => {
-            setContents((contents) => [nextContent, ...contents]);
+        getNextContent().then((nextContents) => {
+            if(nextContents){
+                setContents(nextContents);
+            }else{
+                navigate(ROUTES.MATCH)
+            }
         });
     }, []);
+
 
     const onContentSwipped = useCallback((contentTitle) => {
         setContents((oldContents) => {
             const updatedContents = oldContents.filter(
                 ({ id }) => contentTitle !== id
             );
-            if (updatedContents.length < 3) fetchNewContent();
+            const currentClips = getClips()
+            
+            if(currentClips.length){
+                /**big hack */
+                if(!lastPoped){
+                    popClip()
+                    lastPoped = new Date()
+                    if (currentClips.length < 3) fetchNewContent();
+                }else{
+                    const elapsedTime = getElapsedTime(lastPoped)
+                    if(elapsedTime >= 1){
+                        popClip()
+                        lastPoped = new Date()
+                        if (currentClips.length < 3) fetchNewContent();
+                    }
+                }
+            }
             return updatedContents;
         });
     }, []);
 
-    return <CardList cards={contents} onCardSwipped={onContentSwipped} />;
-}
+    return contents.length ? <CardList cards={contents} onCardSwipped={onContentSwipped} /> : 'loading...';
+})
 
 export { TilesPage }

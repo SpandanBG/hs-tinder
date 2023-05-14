@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ButtonWatchlist = () => {
+const ButtonWatchlist = ({onClick}) => {
     return (
-        <button className='btn-watch-list btn-pr'>
+        <button className='btn-watch-list btn-pr' onClick={onClick}>
             <i className="fa fa-plus" aria-hidden="true"></i>
         </button>
     )

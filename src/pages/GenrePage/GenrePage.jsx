@@ -5,10 +5,11 @@ import TitleLogo from '../../vid/Logo.png'
 import { ButtonWatchNow } from '../../components/ButtonWatchNow'
 import BackButton from '../../vid/arrow.svg'
 import Stars from '../../vid/Stars.png'
+import { setUserGenre, getInitialContent } from '../../api/content/content'
 
 const defGenres = ['DRAMA', 'ACTION', 'COMEDY', 'ALL']
 
-const GenrePage = ({ generes = defGenres }) => {
+const GenrePage = ({ generes = defGenres, setContents }) => {
 
     const [selectedGeneres, setGeneres] = useState([])
 
@@ -26,8 +27,15 @@ const GenrePage = ({ generes = defGenres }) => {
     }
 
     const goToTiles = () => {
-        /** send select genere action here */
-        navigate(ROUTES.TILES)
+        setUserGenre(selectedGeneres).then(()=>{
+            navigate(ROUTES.TILES)
+        }).catch(e =>{
+            console.error(e)
+        })
+        getInitialContent().then((contents) => {
+            console.log('fetched contents', contents)
+            setContents(contents)
+        });
     }
 
     return (
