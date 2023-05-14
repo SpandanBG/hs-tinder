@@ -8,10 +8,10 @@ const ButtonMute = ({ muteButtonRef, isVideoMuted }) => {
             {
                 isVideoMuted ?
                     // <i class="fa fa-volume-off"></i>
-                    <img src={VolumeUp} />
+                    <img src={VolumeOff} />
                     :
                     // <i class="fa fa-volume-up" aria-hidden="true"></i>
-                    <img src={VolumeOff} />
+                    <img src={VolumeUp} />
 
             }
         </button>
