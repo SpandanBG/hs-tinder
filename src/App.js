@@ -24,7 +24,7 @@ export default function App() {
   const onContentSwipped = useCallback((contentTitle) => {
     setContents((oldContents) => {
       const updatedContents = oldContents.filter(
-        ({ title }) => contentTitle !== title
+        ({ id }) => contentTitle !== id
       );
       if (updatedContents.length < 3) fetchNewContent();
       return updatedContents;

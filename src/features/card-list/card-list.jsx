@@ -35,19 +35,19 @@ const CardList = ({ cards, onCardSwipped }) => {
       <BtnArrow />
       <ButtonMute muteButtonRef={muteButtonRef} isVideoMuted={isVideoMuted} />
       {isClip && <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} />}
-      {cards.map(({ title, src, contentImg, type }, i) => {
+      {cards.map(({ id, src, contentImg, type }, i) => {
         tileTypeRef.current = type
         return (
           <Card
-            key={title}
-            id={title}
-            killCallback={() => onCardSwipped(title)}
+            key={id}
+            id={id}
+            killCallback={() => onCardSwipped(id)}
             leftSwipeBtnRef={dislikeBtnRef}
             rightSwipeBtnRef={likeBtnRef}
             isTop={isTop(i, cards.length)}
           >
             {isTop(i, cards.length) ? <ShowTitle src={contentImg} /> : ''}
-            <VideoCard autoplay={isTop(i, cards.length)} title={title} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} isFirstLoad={isFirstLoad} isVideoMuted={isVideoMuted}/>
+            <VideoCard autoplay={isTop(i, cards.length)} title={id} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} isFirstLoad={isFirstLoad} isVideoMuted={isVideoMuted}/>
           </Card>
         )
       })}
