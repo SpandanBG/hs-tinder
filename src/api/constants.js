@@ -2,7 +2,8 @@
 const ROUTES = {
     HOME: '/',
     TILES: '/tiles',
-    MATCH: '/match'
+    MATCH: '/match',
+    GENRE: '/genre'
 }
 
 export { ROUTES }

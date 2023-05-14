@@ -54,7 +54,7 @@ const VideoCard = memo((props) =>{
 
         /*loop with fire event*/
         if(videoRef && videoRef.current){
-          videoRef.current.addEventListener('ended', function () {
+           videoRef.current.addEventListener('ended', function () {
             this.play()
             fireUserAction(USER_ACTIONS.LOOP, id)
           })

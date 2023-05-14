@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -7,6 +7,7 @@ import {
 import { GenrePage } from "./pages/GenrePage"
 import { TilesPage } from "./pages/TilesPage"
 import { MatchPage } from './pages/MatchPage'
+import { TutorialPage } from './pages/TutorialPage'
 import { ROUTES } from "./api/constants"
 import { makeid, getUserId } from "./api/content/content"
 import "./styles.css";
@@ -20,11 +21,15 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: ROUTES.HOME,
-      element: <GenrePage setContents={setContents}/>,
+      element: <TutorialPage setContents={setContents} />,
+    },
+    {
+      path: ROUTES.GENRE,
+      element: <GenrePage setContents={setContents} />,
     },
     {
       path: ROUTES.TILES,
-      element: <TilesPage setContents={setContents} contents={contents}/>
+      element: <TilesPage setContents={setContents} contents={contents} />
     },
     {
       path: ROUTES.MATCH,
@@ -32,17 +37,17 @@ export default function App() {
     }
   ]);
 
-  useEffect(()=>{
-    try{
+  useEffect(() => {
+    try {
       const currentId = getUserId()
-      if(!currentId){
+      if (!currentId) {
         const userId = makeid(12);
         sessionStorage.setItem("userId", userId);
       }
-    }catch(e){
+    } catch (e) {
       console.error(e)
     }
-  },[])
+  }, [])
 
   return (
     <React.StrictMode>

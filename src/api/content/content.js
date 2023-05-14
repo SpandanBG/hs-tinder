@@ -80,6 +80,7 @@ async function getMatch() {
       .get(`${BASE_URL}/user/getMatch`, {
         headers: {
           countryCode: 'IN',
+          'Content-Type': 'application/json'
         },
         data: {},
         params: {
@@ -88,7 +89,7 @@ async function getMatch() {
       })
       .then((response) => {
         res(response.data)
-      });
+      }).catch(e=> res(null));
   })
 }
 
@@ -96,15 +97,15 @@ async function getMatch() {
 async function fireUserAction(action, showId) {
   axios
     .post(`${BASE_URL}/user/action`, {
-      headers: {
-        countryCode: 'IN',
-      },
-      data: {
-        user: getUserId(),
+      user: getUserId(),
         action: {
           action,
-          showId
+          clipId: showId
         }
+    }, {
+      headers: {
+        countryCode: 'IN',
+        'Content-Type': 'application/json'
       }
     })
     .then((response) => {

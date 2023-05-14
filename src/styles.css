@@ -191,12 +191,34 @@ img {
 
 .match-cards {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .match-card {
-  max-width: 33vh;
+  max-width: 20vh;
   border: 1px solid grey;
   border-radius: 8px;
-  margin: 20px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.page-container.match{
+  z-index: 100;
+  position: absolute;
+  width: calc(100% - 60px);
+  overflow: auto;
+}
+
+.ingress > video{
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+}
+
+.tutorial > video{
+  top: 0;
+  width: 100vw;
+  height: 100vh;
 }

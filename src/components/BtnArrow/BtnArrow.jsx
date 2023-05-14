@@ -1,9 +1,9 @@
 import React from 'react'
 import ArrowSvg from '../../vid/arrow.svg'
 
-const BtnArrow = () => {
+const BtnArrow = ({onClick}) => {
     return (
-        <button className='btn-back'>
+        <button className='btn-back' onClick={onClick}>
             <img src={ArrowSvg} />
         </button>
     )

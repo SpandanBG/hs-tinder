@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react"
 import { LoaderPage } from "../Loader"
 import { getMatch } from '../../api/content/content'
 import TitleLogo from '../../vid/Logo.png'
+import { BtnArrow } from '../../components/BtnArrow'
 
 
-const MatchPage = () => {
+const MatchPage = ({results = null, resetResults}) => {
 
-    const [matches, setMatch] = useState(null)
+    const [matches, setMatch] = useState(results)
 
     useEffect(() => {
-        getMatch().then(results => setMatch(results))
+        if(!results){
+            getMatch().then(results => setMatch(results))
+        }
     }, [])
 
     const getImg = (m) => {
@@ -20,8 +23,9 @@ const MatchPage = () => {
         window.open(m.showUrl, '_blank').focus();
     }
 
-    return matches ? <div className="page-container">
-        <div className='logo'>
+    return matches ? <div className="page-container match">
+        <BtnArrow onClick={resetResults}/>
+        <div className='logo' style={{maxWidth: '200px', margin:'1vh 0'}}>
             {/** title coming here */}
             <img src={TitleLogo} />
         </div>

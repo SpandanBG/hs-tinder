@@ -10,6 +10,8 @@ import { BtnArrow } from '../../components/BtnArrow'
 import { ShowTitle } from '../../components/ShowTitle'
 import { ContentType } from '../../api/content'
 import { fireUserAction, USER_ACTIONS } from "../../api/content/content"
+import { ROUTES } from '../../api/constants'
+import {useNavigate} from 'react-router-dom'
 
 const isTop = (cardIndex, cardsLength) => {
   return cardIndex === cardsLength - 1;
@@ -25,6 +27,8 @@ const CardList = ({ cards, onCardSwipped }) => {
   const currentShowId = useRef('')
 
   const [isVideoMuted, setVideoMute] = useState(true)
+
+  const navigate = useNavigate()
 
   const isClip = tileTypeRef.current === ContentType.CLIP
   const primaryCtaProps = {
@@ -43,9 +47,13 @@ const CardList = ({ cards, onCardSwipped }) => {
     window.open(url, '_blank').focus();
   }
 
+  const goToMatch = () => {
+    navigate(ROUTES.MATCH)
+  }
+
   return (
     <>
-      <BtnArrow />
+      <BtnArrow onClick={goToMatch}/>
       <ButtonMute muteButtonRef={muteButtonRef} isVideoMuted={isVideoMuted} />
       {isClip && <SemiCircleBtn type={BtnTypes.CROSS} btnRef={dislikeBtnRef} key={`${currentShowId.current}-dislike`} />}
       {cards.map((show, i) => {

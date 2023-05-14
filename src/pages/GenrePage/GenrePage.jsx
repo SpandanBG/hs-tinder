@@ -43,11 +43,6 @@ const GenrePage = ({ generes = defGenres, setContents }) => {
             <div className='background-stars'>
                 <img src={Stars} />
             </div>
-            <div className='back-button'>
-                <button>
-                    <img src={BackButton} />
-                </button>
-            </div>
             <div className='logo'>
                 {/** title coming here */}
                 <img src={TitleLogo} />
