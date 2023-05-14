@@ -181,3 +181,10 @@ img {
 .background-stars{
   position: absolute;
 }
+
+.loader-img{
+  max-width: 100px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

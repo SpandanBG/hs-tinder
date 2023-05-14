@@ -2,6 +2,7 @@ import React, {memo} from 'react'
 import { useCallback } from "react";
 import { CardList } from "../../features/card-list";
 import { getNextContent, popClip, getClips } from "../../api/content";
+import {LoaderPage} from '../Loader'
 import { ROUTES } from '../../api/constants'
 import {useNavigate} from 'react-router-dom'
 
@@ -56,7 +57,7 @@ const TilesPage = memo(({contents, setContents}) => {
         });
     }, []);
 
-    return contents.length ? <CardList cards={contents} onCardSwipped={onContentSwipped} /> : 'loading...';
+    return contents.length ? <CardList cards={contents} onCardSwipped={onContentSwipped} /> : <LoaderPage/>;
 })
 
 export { TilesPage }
