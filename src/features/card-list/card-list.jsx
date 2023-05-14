@@ -33,7 +33,7 @@ const CardList = ({ cards, onCardSwipped }) => {
   const isClip = tileTypeRef.current === ContentType.CLIP
   const primaryCtaProps = {
     className: isClip ? '' : 'btn-ads',
-    text: isClip ? 'Watch Now' : 'Visit Site',
+    text: isClip ? 'Watch Now' : 'Visit Ad Site',
     icon: isClip ? 'fa fa-play icon-play' : ''
   }
 

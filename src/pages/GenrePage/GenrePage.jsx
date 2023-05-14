@@ -7,7 +7,11 @@ import BackButton from '../../vid/arrow.svg'
 import Stars from '../../vid/Stars.png'
 import { setUserGenre, getInitialContent } from '../../api/content/content'
 
-const defGenres = ['DRAMA', 'ACTION', 'COMEDY', 'ALL']
+const DISPLAY_MAP = {
+    DRAMA: 'WHOLESOME' , ACTION:'ACTION',COMEDY:'Funny',ALL: 'ALL'
+}
+
+const defGenres = ['COMEDY','ACTION','DRAMA', 'ALL']
 
 const GenrePage = ({ generes = defGenres, setContents }) => {
 
@@ -29,13 +33,13 @@ const GenrePage = ({ generes = defGenres, setContents }) => {
     const goToTiles = () => {
         setUserGenre(selectedGeneres).then(()=>{
             navigate(ROUTES.TILES)
+            getInitialContent().then((contents) => {
+                console.log('fetched contents', contents)
+                setContents(contents)
+            });
         }).catch(e =>{
             console.error(e)
         })
-        getInitialContent().then((contents) => {
-            console.log('fetched contents', contents)
-            setContents(contents)
-        });
     }
 
     return (
@@ -56,7 +60,7 @@ const GenrePage = ({ generes = defGenres, setContents }) => {
                     generes.map(text => {
                         const isSelected = !!selectedGeneres.includes(text)
                         console.log(selectedGeneres, text, isSelected)
-                        return <button className={`${isSelected? 'selected' : ''}`} key={text} onClick={() => onGenreSelect(text)}>{text.toLowerCase()}</button>
+                        return <button className={`${isSelected? 'selected' : ''}`} key={text} onClick={() => onGenreSelect(text)}>{DISPLAY_MAP[text].toLowerCase()}</button>
                     })
                 }
             </div>
