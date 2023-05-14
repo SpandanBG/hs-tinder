@@ -12,10 +12,10 @@
 }
 
 .button-mute{
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10;
+    z-index: 200;
     background: none;
     border: none;
     color: white;
