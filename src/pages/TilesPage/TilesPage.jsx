@@ -33,7 +33,8 @@ const TilesPage = memo(({ contents, setContents }) => {
             }
         });
         getMatch().then(r => {
-            setResults(r)
+            const res = r && r.length? r: null
+            setResults(res)
         })
     }, []);
 
