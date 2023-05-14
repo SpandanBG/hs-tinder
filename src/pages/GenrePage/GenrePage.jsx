@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../api/constants'
 import TitleLogo from '../../vid/Logo.png'
-import cx from 'classnames'
 import { ButtonWatchNow } from '../../components/ButtonWatchNow'
+import BackButton from '../../vid/arrow.svg'
+import Stars from '../../vid/Stars.png'
 
 const defGenres = ['DRAMA', 'ACTION', 'COMEDY', 'ALL']
 
@@ -31,6 +32,14 @@ const GenrePage = ({ generes = defGenres }) => {
 
     return (
         <div className='page-container'>
+            <div className='background-stars'>
+                <img src={Stars} />
+            </div>
+            <div className='back-button'>
+                <button>
+                    <img src={BackButton} />
+                </button>
+            </div>
             <div className='logo'>
                 {/** title coming here */}
                 <img src={TitleLogo} />
