@@ -33,10 +33,12 @@ const GenrePage = ({ generes = defGenres, setContents }) => {
     const goToTiles = () => {
         setUserGenre(selectedGeneres).then(()=>{
             navigate(ROUTES.TILES)
-            getInitialContent().then((contents) => {
-                console.log('fetched contents', contents)
-                setContents(contents)
-            });
+            setTimeout(() => {
+                getInitialContent().then((contents) => {
+                    console.log('fetched contents', contents)
+                    setContents(contents)
+                });
+            }, 500);
         }).catch(e =>{
             console.error(e)
         })

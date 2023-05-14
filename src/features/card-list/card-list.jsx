@@ -70,7 +70,7 @@ const CardList = ({ cards, onCardSwipped }) => {
             rightSwipeBtnRef={likeBtnRef}
             isTop={isTop(i, cards.length)}
           >
-            {isTop(i, cards.length) ? <ShowTitle src={contentImg} /> : ''}
+            {isTop(i, cards.length) && isClip ? <ShowTitle src={contentImg} /> : ''}
             <VideoCard autoplay={isTop(i, cards.length)} title={id} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} isFirstLoad={isFirstLoad} isVideoMuted={isVideoMuted} id={id} />
           </Card>
         )
