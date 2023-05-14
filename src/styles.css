@@ -4,12 +4,17 @@ body {
   height: 100%;
   overflow: hidden;
   background: black;
+  font-family: Inter;
 }
 
-button{
+button {
   background: none;
   outline: none;
   border: none;
+}
+
+img {
+  width: 100%;
 }
 
 .clean-btn {
@@ -30,7 +35,7 @@ button{
   bottom: 92px;
 }
 
-.react-btn-common > img {
+.react-btn-common>img {
   height: 100%;
 }
 
@@ -74,7 +79,7 @@ button{
   width: 100%;
 }
 
-.icon-play{
+.icon-play {
   margin-right: 8px;
 }
 
@@ -87,14 +92,14 @@ button{
   width: 100%;
 }
 
-.btn-back{
+.btn-back {
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 10;
 }
 
-.show-title{
+.show-title {
   position: absolute;
   z-index: 10;
   margin: 0 100px;
@@ -102,15 +107,66 @@ button{
   bottom: 72px;
 }
 
-.show-title > img {
+.show-title>img {
   max-height: 100%;
   max-width: 100%;
 }
 
-.btn-ads{
+.btn-ads {
   background: rgba(255, 255, 255, 0.4);
 }
 
-.genre-buttons >  button{
+.genre-buttons>button {
+  color: #8F98B2;
+  border: 1px solid #252833;
+  border-radius: 8px;
+  text-transform: capitalize;
+  padding: 8px;
+  margin: 5px;
+}
+
+.genre-buttons > .selected {
+  color: #E1E6F0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   color: white;
+  text-align: center;
+  padding: 30px;
+  align-items: center;
+  background: #0F1014;
+}
+
+.logo {
+  max-width: 300px;
+  margin: 10vh 0 5vh 0;
+}
+
+.title{
+  padding: 20px;
+}
+
+.head {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.sub-head {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #8F98B2;
+}
+
+.btn-white{
+  background: #E1E6F0;
+  color: #0F1014;
+  position: fixed;
+  bottom: 20px;
+  width: calc(100vw - 40px);
 }
