@@ -126,7 +126,7 @@ img {
   margin: 5px;
 }
 
-.genre-buttons > .selected {
+.genre-buttons>.selected {
   color: #E1E6F0;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -147,7 +147,7 @@ img {
   margin: 10vh 0 5vh 0;
 }
 
-.title{
+.title {
   padding: 20px;
 }
 
@@ -164,7 +164,7 @@ img {
   color: #8F98B2;
 }
 
-.btn-white{
+.btn-white {
   background: #E1E6F0;
   color: #0F1014;
   position: fixed;
@@ -172,19 +172,31 @@ img {
   width: calc(100vw - 40px);
 }
 
-.back-button{
+.back-button {
   position: fixed;
   top: 20px;
   left: 20px;
 }
 
-.background-stars{
+.background-stars {
   position: absolute;
 }
 
-.loader-img{
+.loader-img {
   max-width: 100px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.match-cards {
+  display: flex;
+}
+
+.match-card {
+  max-width: 33vh;
+  border: 1px solid grey;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 10px;
 }

@@ -74,20 +74,22 @@ async function getContent() {
   })
 }
 
-async function ping() {
-  axios
-    .get(`${BASE_URL}/ping`, {
-      headers: {
-        countryCode: 'IN',
-      },
-      data: {},
-      params: {
-        user: getUserId()
-      }
-    })
-    .then((response) => {
-      console.log(response);
-    });
+async function getMatch() {
+  return new Promise((res)=>{
+    axios
+      .get(`${BASE_URL}/user/getMatch`, {
+        headers: {
+          countryCode: 'IN',
+        },
+        data: {},
+        params: {
+          user: getUserId()
+        }
+      })
+      .then((response) => {
+        res(response.data)
+      });
+  })
 }
 
 
@@ -152,4 +154,4 @@ async function getNextContent() {
   return Clips;
 }
 
-export { getClips, ping, getInitialContent, getNextContent, ContentType, makeid, getContent, setUserGenre, fireUserAction, USER_ACTIONS, getUserId, popClip };
+export { getClips, getMatch, getInitialContent, getNextContent, ContentType, makeid, getContent, setUserGenre, fireUserAction, USER_ACTIONS, getUserId, popClip };
