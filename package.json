@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
-  "homepage": "http://SpandanBG.github.io/hs-tinder",
+  "homepage": "https://spandanbg.github.io/hs-tinder/",
   "dependencies": {
     "animejs": "3.2.1",
     "axios": "^1.4.0",
