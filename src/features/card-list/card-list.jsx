@@ -17,7 +17,7 @@ const isTop = (cardIndex, cardsLength) => {
   return cardIndex === cardsLength - 1;
 };
 
-const CardList = ({ cards, onCardSwipped }) => {
+const CardList = ({ cards, onCardSwipped, positiveFeedback, addToFeedback }) => {
   const likeBtnRef = useRef(() => { });
   const dislikeBtnRef = useRef(() => { });
   const muteButtonRef = useRef(() => { });
@@ -39,16 +39,22 @@ const CardList = ({ cards, onCardSwipped }) => {
 
   const addToWatchlistHandler = () => {
     fireUserAction(USER_ACTIONS.ADDTOWATCHLIST, currentShowId.current)
+    addToFeedback(showDetails.current)
   }
 
   const watchNowHandler = () => {
     fireUserAction(USER_ACTIONS.WATCHNOW, currentShowId.current)
     const { showUrl: url } = showDetails.current
     window.open(url, '_blank').focus();
+    addToFeedback(showDetails.current)
   }
 
   const goToMatch = () => {
     navigate(ROUTES.MATCH)
+  }
+
+  const wrapAddtoFeedback = () => {
+    addToFeedback(showDetails.current)
   }
 
   return (
@@ -69,6 +75,8 @@ const CardList = ({ cards, onCardSwipped }) => {
             leftSwipeBtnRef={dislikeBtnRef}
             rightSwipeBtnRef={likeBtnRef}
             isTop={isTop(i, cards.length)}
+            addToFeedback={wrapAddtoFeedback}
+
           >
             {isTop(i, cards.length) && isClip ? <ShowTitle src={contentImg} /> : ''}
             <VideoCard autoplay={isTop(i, cards.length)} title={id} setVideoMute={setVideoMute} muteButtonRef={muteButtonRef} vidSrc={src} isFirstLoad={isFirstLoad} isVideoMuted={isVideoMuted} id={id} />

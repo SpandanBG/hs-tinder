@@ -15,6 +15,7 @@ const Card = ({
   rightSwipeBtnRef,
   isTop,
   children,
+  addToFeedback
 }) => {
   const movedRef = useRef(false);
   const timer = useRef(0)
@@ -46,6 +47,7 @@ const Card = ({
 
     if(deltaX === 1){
       fireUserAction(USER_ACTIONS.LIKE, id)
+      addToFeedback()
     }else{
       fireUserAction(USER_ACTIONS.DISLIKE, id)
       /** only swipe on dislike */

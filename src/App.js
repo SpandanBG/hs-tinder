@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -17,6 +17,18 @@ import "./styles.css";
 export default function App() {
 
   const [contents, setContents] = useState([]);
+  const positiveFeedback = useRef([])
+
+  const addToFeedback = (show) => {
+    const { title } = show
+    const recordIndex = positiveFeedback.current.findIndex(s => s.title === title)
+    if(recordIndex >= 0){
+      positiveFeedback.current[recordIndex].count += 1
+    }else{
+      positiveFeedback.current.push({...show, count: 1})
+    }
+    sessionStorage.setItem('matches', JSON.stringify(positiveFeedback.current))
+  }
 
   const router = createBrowserRouter([
     {
@@ -29,7 +41,7 @@ export default function App() {
     },
     {
       path: ROUTES.TILES,
-      element: <TilesPage setContents={setContents} contents={contents} />
+      element: <TilesPage setContents={setContents} contents={contents} positiveFeedback={positiveFeedback} addToFeedback={addToFeedback}/>
     },
     {
       path: ROUTES.MATCH,

@@ -17,7 +17,7 @@ function getElapsedTime(time) {
     return seconds
 }
 
-const TilesPage = memo(({ contents, setContents }) => {
+const TilesPage = memo(({ contents, setContents, positiveFeedback, addToFeedback }) => {
 
     const navigate = useNavigate()
 
@@ -71,8 +71,8 @@ const TilesPage = memo(({ contents, setContents }) => {
 
     return contents.length ?
         <>
-            <CardList cards={contents} onCardSwipped={onContentSwipped} />
-            {results && <MatchPage results={results} resetResults={goBackToTiles}/>}
+            <CardList cards={contents} onCardSwipped={onContentSwipped} positiveFeedback={positiveFeedback} addToFeedback={addToFeedback}/>
+            {results && <MatchPage results={results} resetResults={goBackToTiles} positiveFeedback={positiveFeedback}/>}
         </>
         : <LoaderPage />;
 })
